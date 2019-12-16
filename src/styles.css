@@ -1,0 +1,21 @@
+/* You can add global styles to this file, and also import other style files */
+body{
+    margin: 0px !important;
+    height: auto;
+}
+.ui-panelmenu .ui-panelmenu-header > a {
+    border: 0px !important;
+    background-color:#4a4a4a !important;
+    color: #a4afbf !important;
+}
+.ui-panelmenu .ui-panelmenu-header:not(.ui-state-active) > a:hover {
+    border: 0px solid #dbdbdb !important;
+    background-color: #d0d7db !important;
+    color: #a4afbf !important;
+}
+ .ui-breadcrumb {
+    border: 0px !important;
+ }
+ .ui-g-8 {
+    width: 35% !important;
+}

@@ -1,0 +1,8 @@
+{
+    "data": [
+        {"destinationName": "Test 02", "iPAddress": "192.168.2.1", "portNumber": "80", "sNMPTrapVersion": "v2", "status":"Enable"},
+        {"destinationName": "Test 03", "iPAddress": "192.168.3.1", "portNumber": "90", "sNMPTrapVersion": "v2", "status":"Enable"},
+        {"destinationName": "Test 04", "iPAddress": "192.168.4.1", "portNumber": "81", "sNMPTrapVersion": "v2", "status":"Enable"},
+        {"destinationName": "Test 05", "iPAddress": "192.168.2.5", "portNumber": "70", "sNMPTrapVersion": "v2", "status":"Enable"}
+    ]
+}

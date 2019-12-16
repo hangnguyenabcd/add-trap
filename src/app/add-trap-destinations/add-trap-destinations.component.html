@@ -1,0 +1,203 @@
+<div class="add-trap">
+    <p-breadcrumb [model]="items"></p-breadcrumb>
+    <p class="title">Add Trap Destinations</p>
+</div>
+<div>
+    <form [formGroup]="userform" (ngSubmit)="onSubmit(userform.value)">
+        <div class="ui-fluid">
+            <div class="ui-g">
+                <div class="ui-g-12">
+                    <div class="ui-g-4">
+                        Enable
+                    </div>
+                    <div class="ui-g-8">
+                        <p-inputSwitch name="enable"></p-inputSwitch>
+                    </div>
+                </div>
+
+                <div class="ui-g-12">
+                    <div class="ui-g-4">
+                        Destination Name <span class="char">*</span>
+                    </div>
+                    <div class="ui-g-8">
+                        <input type="text" required name="destination" formControlName="destination" class="input-form">
+                        <p-message severity="error" text="Destination Name is required"
+                            *ngIf="userform.controls['destination'].errors?.required && userform.controls['destination'].dirty">
+                        </p-message>
+                    </div>
+                </div>
+
+                <div class="ui-g-12">
+                    <div class="ui-g-4">
+                        IP Address (v4/v6) <span class="char">*</span>
+                    </div>
+                    <div class="ui-g-8">
+                        <input id="address" required type="text" name="ipaddress" formControlName="ipaddress"
+                            class="input-form">
+                        <p-message severity="error" text="IP Address (v4/v6) is required"
+                            *ngIf="userform.controls['ipaddress'].errors?.required && userform.controls['ipaddress'].dirty">
+                        </p-message>
+                    </div>
+                </div>
+
+                <div class="ui-g-12">
+                    <div class="ui-g-4">
+                        Port Number <span class="char">*</span>
+                    </div>
+                    <div class="ui-g-8">
+                        <input id="portnumber" required type="text" name="portnumber" formControlName="portnumber"
+                            class="input-form">
+                        <p-message severity="error" text="Port Number Name is required"
+                            *ngIf="userform.controls['portnumber'].errors?.required && userform.controls['portnumber'].dirty">
+                        </p-message>
+                    </div>
+                </div>
+
+                <div class="ui-g-12">
+                    <div class="ui-g-4">
+                        SNMP Trap Community <span class="char">*</span>
+                    </div>
+                    <div class="ui-g-8">
+                        <input id="address" required type="text" name="community" formControlName="community"
+                            class="input-form">
+                        <p-message severity="error" text="SNMP Trap Community is required"
+                            *ngIf="userform.controls['community'].errors?.required && userform.controls['community'].dirty">
+                        </p-message>
+                    </div>
+                </div>
+
+                <div class="ui-g-12">
+                    <div class="ui-g-4">
+                        SNMP Trap Version <span class="char">*</span>
+                    </div>
+                    <div class="ui-g-8">
+                        <p-dropdown [options]="trapversion" formControlName="version" (ngModelChange)="handleV3()">
+                        </p-dropdown>
+                        <p-message severity="error" text="SNMP Trap Version is required"
+                            *ngIf="userform.controls['version'].errors?.required && userform.controls['version'].dirty">
+                        </p-message>
+                    </div>
+                </div>
+                <div *ngIf="versionV3">
+                    <div class="ui-g">
+                        <div class="ui-g-12">
+                            <div class="ui-g-4">
+                                SNMP V3Local Engine ID <span class="char">*</span>
+                            </div>
+                            <div class="ui-g-8">
+                                <input id="engine" required type="text" name="engine" formControlName="engine"
+                                    class="input-form">
+                                <p-message severity="error" text="Port Number Name is required"
+                                    *ngIf="userform.controls['engine'].errors?.required && userform.controls['engine'].dirty">
+                                </p-message>
+                            </div>
+                        </div>
+
+                        <div class="ui-g-12">
+                            <div class="ui-g-4">
+                                SNMP V3 User <span class="char">*</span>
+                            </div>
+                            <div class="ui-g-8">
+                                <input id="v3user" required type="text" name="v3user" formControlName="v3user"
+                                    class="input-form">
+                                <p-message severity="error" text="SNMP Trap Community is required"
+                                    *ngIf="userform.controls['v3user'].errors?.required && userform.controls['v3user'].dirty">
+                                </p-message>
+                            </div>
+                        </div>
+                        <div class="ui-g-12">
+                            <div class="ui-g-7">
+                                <span class="securaty">Security</span>
+                                <hr class="security-hr" />
+                            </div>
+                        </div>
+
+                        <div class="ui-g-12">
+                            <div class="ui-g-4">
+                                Authentication Disabled
+                            </div>
+                            <div class="ui-g-8">
+                                <p-inputSwitch name="authentication" formControlName="authentication"
+                                    (ngModelChange)="handleAuthentication()"></p-inputSwitch>
+                            </div>
+                        </div>
+
+                        <div *ngIf="authenticationV3">
+                            <div class="ui-g-12">
+                                <div class="ui-g-4">
+                                    SNMP v3 Authentication Passphrase<span class="char">*</span>
+                                </div>
+                                <div class="ui-g-8">
+                                    <input id="address" required type="text" name="authenticationPassphrase"
+                                        formControlName="authenticationPassphrase" class="input-form">
+                                    <p-message severity="error" text="SNMP v3 Authentication Passphrase is required"
+                                        *ngIf="userform.controls['authenticationPassphrase'].errors?.required && userform.controls['authenticationPassphrase'].dirty">
+                                    </p-message>
+                                </div>
+                            </div>
+
+                            <div class="ui-g-12">
+                                <div class="ui-g-4">
+                                    SNMP V3 Authentication Protocol <span class="char">*</span>
+                                </div>
+                                <div class="ui-g-8">
+                                    <p-dropdown [options]="authenticationProtocol"
+                                        formControlName="authenticationProtocol"></p-dropdown>
+                                    <p-message severity="error" text=" SNMP V3 Authentication Protocol is required"
+                                        *ngIf="userform.controls['authenticationProtocol'].errors?.required && userform.controls['authenticationProtocol'].dirty">
+                                    </p-message>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="ui-g-12">
+                            <div class="ui-g-4">
+                                Privacy Disabled
+                            </div>
+                            <div class="ui-g-8">
+                                <p-inputSwitch name="privacy" formControlName="privacy"
+                                    (ngModelChange)="handlePrivacy()"></p-inputSwitch>
+                            </div>
+                        </div>
+                        <div *ngIf="privacyV3">
+                            <div class="ui-g">
+                            <div class="ui-g-12">
+                                <div class="ui-g-4">
+                                    SNMP V3 Privacy Passphrase <span class="char">*</span>
+                                </div>
+                                <div class="ui-g-8">
+                                    <input id="privacyPassphrase" required type="text" name="privacyPassphrase"
+                                        formControlName="privacyPassphrase" class="input-form">
+                                    <p-message severity="error" text="SNMP V3 Privacy Passphrase is required"
+                                        *ngIf="userform.controls['privacyPassphrase'].errors?.required && userform.controls['privacyPassphrase'].dirty">
+                                    </p-message>
+                                </div>
+                            </div>
+                            <div class="ui-g-12">
+                                <div class="ui-g-4">
+                                    SNMP Trap V3 Privacy Protocol <span class="char">*</span>
+                                </div>
+                                <div class="ui-g-8">
+                                    <p-dropdown [options]="privacyProtocol" formControlName="privacyProtocol">
+                                    </p-dropdown>
+                                    <p-message severity="error" text="SNMP Trap V3 Privacy Protocol is required"
+                                        *ngIf="userform.controls['privacyProtocol'].errors?.required && userform.controls['privacyProtocol'].dirty">
+                                    </p-message>
+                                </div>
+                            </div>
+                        </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="button-model">
+            <div class="button-group">
+                <p-button label="Cancel" icon="pi pi-times" iconPos="left" styleClass="ui-button-secondary"></p-button>
+                <p-button label="Save" icon="pi pi-check" iconPos="left" styleClass="ui-button-danger" [disabled]="!userform.valid"></p-button>
+            </div>
+        </div>
+    </form>
+</div>

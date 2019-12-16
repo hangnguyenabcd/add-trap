@@ -1,0 +1,29 @@
+<div class="add-trap">
+     <h1>Trap Destinations</h1>
+    <p-button label="Add Trap Destinations" icon="pi pi-plus" iconPos="right" styleClass="ui-button-danger" class="button-add" routerLink="add"></p-button>
+
+
+    <p-table [columns]="cols" [value]="trapDes"  [paginator]="true" [rows]="10" [totalRecords]="50" [rowsPerPageOptions]="[10,20,30]">
+            <ng-template pTemplate="header" let-columns>
+                <tr>
+                    <th *ngFor="let col of columns" [pSortableColumn]="col.field">
+                        {{col.header}}
+                        <p-sortIcon [field]="col.field" ariaLabel="Activate to sort" ariaLabelDesc="Activate to sort in descending order" ariaLabelAsc="Activate to sort in ascending order"></p-sortIcon>
+                    </th>
+                    <th>Delete</th>
+                </tr>
+            </ng-template>
+            <ng-template pTemplate="body" let-rowData let-columns="columns">
+                <tr>
+                    <td *ngFor="let col of columns">
+                        {{rowData[col.field]}}
+                    </td>
+                    <td>
+                        <i class="pi pi-trash" id="bell"></i>
+                    </td>
+                </tr>
+            </ng-template>
+        </p-table>
+
+
+</div>
