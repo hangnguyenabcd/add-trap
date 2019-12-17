@@ -44,16 +44,32 @@ body .ui-breadcrumb {
     text-align: left;
 }
 .ui-menuitem-text {
-    color: #a4afbf !important ;
+    color: #858586 !important ;
+    font-weight: 800;
 }
 body .ui-menubar {
     padding: 0;
-    background-color: black !important;
-    border: 0px solid black !important;
+    background-color: #1d1f21 !important;
+    border: 0px solid #1d1f21 !important;
 }
 .ui-menubar .ui-menubar-root-list>.ui-menuitem>.ui-menuitem-link>.ui-submenu-icon {
     color: #a4afbf !important;
 }
 .ui-table .ui-paginator-bottom {
     text-align: right;
+}
+body .ui-corner-all {
+    border-radius: 0px !important; 
+}
+.ui-panelmenu .ui-panelmenu-content .ui-menuitem {
+    background-color: #dee2e4 ;
+}
+.ui-dropdown label.ui-dropdown-label {
+    text-align: left;
+}
+.ui-paginator .ui-paginator-left-content {
+    padding-top: 8px;
+    font-size: 14px;
+    padding-left: 5px;
+    color: rgb(161, 160, 160);
 }

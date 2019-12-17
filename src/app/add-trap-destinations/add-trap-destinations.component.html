@@ -78,7 +78,7 @@
                         </p-message>
                     </div>
                 </div>
-                <div *ngIf="versionV3">
+                <div *ngIf="V3">
                     <div class="ui-g">
                         <div class="ui-g-12">
                             <div class="ui-g-4">
@@ -99,6 +99,7 @@
                                     class="input-form">
                             </div>
                         </div>
+
                         <div class="ui-g-12">
                             <div class="ui-g-7">
                                 <span class="securaty">Security</span>
@@ -115,7 +116,6 @@
                                     (ngModelChange)="handleAuthentication()"></p-inputSwitch>
                             </div>
                         </div>
-
                         <div *ngIf="authenticationV3">
                             <div class="ui-g-12">
                                 <div class="ui-g-4">
@@ -126,7 +126,6 @@
                                         formControlName="authenticationPassphrase" class="input-form">
                                 </div>
                             </div>
-
                             <div class="ui-g-12">
                                 <div class="ui-g-4">
                                     SNMP V3 Authentication Protocol <span class="char">*</span>
@@ -149,25 +148,25 @@
                         </div>
                         <div *ngIf="privacyV3">
                             <div class="ui-g">
-                            <div class="ui-g-12">
-                                <div class="ui-g-4">
-                                    SNMP V3 Privacy Passphrase <span class="char">*</span>
+                                <div class="ui-g-12">
+                                    <div class="ui-g-4">
+                                        SNMP V3 Privacy Passphrase <span class="char">*</span>
+                                    </div>
+                                    <div class="ui-g-8">
+                                        <input id="privacyPassphrase" required type="text" name="privacyPassphrase"
+                                            formControlName="privacyPassphrase" class="input-form">
+                                    </div>
                                 </div>
-                                <div class="ui-g-8">
-                                    <input id="privacyPassphrase" required type="text" name="privacyPassphrase"
-                                        formControlName="privacyPassphrase" class="input-form">
+                                <div class="ui-g-12">
+                                    <div class="ui-g-4">
+                                        SNMP Trap V3 Privacy Protocol <span class="char">*</span>
+                                    </div>
+                                    <div class="ui-g-8">
+                                        <p-dropdown [options]="privacyProtocol" formControlName="privacyProtocol">
+                                        </p-dropdown>
+                                    </div>
                                 </div>
                             </div>
-                            <div class="ui-g-12">
-                                <div class="ui-g-4">
-                                    SNMP Trap V3 Privacy Protocol <span class="char">*</span>
-                                </div>
-                                <div class="ui-g-8">
-                                    <p-dropdown [options]="privacyProtocol" formControlName="privacyProtocol">
-                                    </p-dropdown>
-                                </div>
-                            </div>
-                        </div>
                         </div>
 
                     </div>

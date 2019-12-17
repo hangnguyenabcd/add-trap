@@ -7,10 +7,10 @@ import { Validators, FormControl, FormGroup, FormBuilder } from '@angular/forms'
 import { MessageService } from 'primeng/api';
 import { TrapdestinationsService } from '../service/trapdestinations.service'
 
-interface City {
-  name: string,
-  code: string
-}
+// interface City {
+//   name: string,
+//   code: string
+// }
 
 @Component({
   selector: 'app-add-trap-destinations',
@@ -20,7 +20,7 @@ interface City {
 })
 export class AddTrapDestinationsComponent implements OnInit {
   private items: MenuItem[];
-  cities: City[];
+  // cities: City[];
   userform: FormGroup;
 
   submitted: boolean;
@@ -30,7 +30,7 @@ export class AddTrapDestinationsComponent implements OnInit {
   privacyProtocol: SelectItem[];
 
   description: string;
-  versionV3 = false;
+  V3 = false;
   authenticationV3 = false;
   privacyV3 = false;
   private editItem: any;
@@ -124,7 +124,7 @@ export class AddTrapDestinationsComponent implements OnInit {
     if (this.userform.get('version').value == 'V3') {
       this.enableVersionV3(true)
     } else {
-      this.enableVersionV3(true)
+      this.enableVersionV3(false)
     }
   }
 
@@ -145,11 +145,11 @@ export class AddTrapDestinationsComponent implements OnInit {
   }
   enableVersionV3(enable: boolean) {
     if (enable) {
-      this.versionV3 = true;
+      this.V3 = true;
       this.userform.get('engine').setValidators([Validators.required]); this.userform.get('engine').updateValueAndValidity();
       this.userform.get('v3user').setValidators([Validators.required]); this.userform.get('v3user').updateValueAndValidity();
     } else {
-      this.versionV3 = false;
+      this.V3 = false;
       this.enableAutForm(false);
       this.enablePrivacyForm(false);
       this.userform.get('engine').clearValidators(); this.userform.get('engine').updateValueAndValidity();
