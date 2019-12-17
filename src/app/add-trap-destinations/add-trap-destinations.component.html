@@ -11,7 +11,7 @@
                         Enable
                     </div>
                     <div class="ui-g-8">
-                        <p-inputSwitch name="enable"></p-inputSwitch>
+                        <p-inputSwitch name="status" formControlName="status"></p-inputSwitch>
                     </div>
                 </div>
 
@@ -20,9 +20,9 @@
                         Destination Name <span class="char">*</span>
                     </div>
                     <div class="ui-g-8">
-                        <input type="text" required name="destination" formControlName="destination" class="input-form">
+                        <input type="text" required name="destinationName" formControlName="destinationName" class="input-form">
                         <p-message severity="error" text="Destination Name is required"
-                            *ngIf="userform.controls['destination'].errors?.required && userform.controls['destination'].dirty">
+                            *ngIf="userform.controls['destinationName'].errors?.required && userform.controls['destinationName'].dirty">
                         </p-message>
                     </div>
                 </div>
@@ -32,10 +32,10 @@
                         IP Address (v4/v6) <span class="char">*</span>
                     </div>
                     <div class="ui-g-8">
-                        <input id="address" required type="text" name="ipaddress" formControlName="ipaddress"
+                        <input id="address" required type="text" name="ipAddress" formControlName="ipAddress"
                             class="input-form">
                         <p-message severity="error" text="IP Address (v4/v6) is required"
-                            *ngIf="userform.controls['ipaddress'].errors?.required && userform.controls['ipaddress'].dirty">
+                            *ngIf="userform.controls['ipAddress'].errors?.required && userform.controls['ipAddress'].dirty || userform.controls['ipAddress'].errors?.pattern">
                         </p-message>
                     </div>
                 </div>
@@ -45,10 +45,10 @@
                         Port Number <span class="char">*</span>
                     </div>
                     <div class="ui-g-8">
-                        <input id="portnumber" required type="text" name="portnumber" formControlName="portnumber"
+                        <input id="portNumber" required type="text" name="portNumber" formControlName="portNumber"
                             class="input-form">
                         <p-message severity="error" text="Port Number Name is required"
-                            *ngIf="userform.controls['portnumber'].errors?.required && userform.controls['portnumber'].dirty">
+                            *ngIf="userform.controls['portNumber'].errors?.required && userform.controls['portNumber'].dirty || userform.controls['portNumber'].errors?.pattern">
                         </p-message>
                     </div>
                 </div>
@@ -87,9 +87,6 @@
                             <div class="ui-g-8">
                                 <input id="engine" required type="text" name="engine" formControlName="engine"
                                     class="input-form">
-                                <p-message severity="error" text="Port Number Name is required"
-                                    *ngIf="userform.controls['engine'].errors?.required && userform.controls['engine'].dirty">
-                                </p-message>
                             </div>
                         </div>
 
@@ -100,9 +97,6 @@
                             <div class="ui-g-8">
                                 <input id="v3user" required type="text" name="v3user" formControlName="v3user"
                                     class="input-form">
-                                <p-message severity="error" text="SNMP Trap Community is required"
-                                    *ngIf="userform.controls['v3user'].errors?.required && userform.controls['v3user'].dirty">
-                                </p-message>
                             </div>
                         </div>
                         <div class="ui-g-12">
@@ -130,9 +124,6 @@
                                 <div class="ui-g-8">
                                     <input id="address" required type="text" name="authenticationPassphrase"
                                         formControlName="authenticationPassphrase" class="input-form">
-                                    <p-message severity="error" text="SNMP v3 Authentication Passphrase is required"
-                                        *ngIf="userform.controls['authenticationPassphrase'].errors?.required && userform.controls['authenticationPassphrase'].dirty">
-                                    </p-message>
                                 </div>
                             </div>
 
@@ -143,9 +134,6 @@
                                 <div class="ui-g-8">
                                     <p-dropdown [options]="authenticationProtocol"
                                         formControlName="authenticationProtocol"></p-dropdown>
-                                    <p-message severity="error" text=" SNMP V3 Authentication Protocol is required"
-                                        *ngIf="userform.controls['authenticationProtocol'].errors?.required && userform.controls['authenticationProtocol'].dirty">
-                                    </p-message>
                                 </div>
                             </div>
                         </div>
@@ -168,9 +156,6 @@
                                 <div class="ui-g-8">
                                     <input id="privacyPassphrase" required type="text" name="privacyPassphrase"
                                         formControlName="privacyPassphrase" class="input-form">
-                                    <p-message severity="error" text="SNMP V3 Privacy Passphrase is required"
-                                        *ngIf="userform.controls['privacyPassphrase'].errors?.required && userform.controls['privacyPassphrase'].dirty">
-                                    </p-message>
                                 </div>
                             </div>
                             <div class="ui-g-12">
@@ -180,9 +165,6 @@
                                 <div class="ui-g-8">
                                     <p-dropdown [options]="privacyProtocol" formControlName="privacyProtocol">
                                     </p-dropdown>
-                                    <p-message severity="error" text="SNMP Trap V3 Privacy Protocol is required"
-                                        *ngIf="userform.controls['privacyProtocol'].errors?.required && userform.controls['privacyProtocol'].dirty">
-                                    </p-message>
                                 </div>
                             </div>
                         </div>

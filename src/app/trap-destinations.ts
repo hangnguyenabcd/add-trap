@@ -1,7 +1,15 @@
 export interface Trapdestinations {
+    id,
     destinationName;
-    iPAddress;
+    ipAddress;
     portNumber;
-    sNMPTrapVersion;
-    status
+    status,
+    community,
+    version,
+    engine?: string,
+    v3user?: string,
+    authenticationPassphrase?: string,
+    authenticationProtocol?: string,
+    privacyPassphrase?: string,
+    privacyProtocol?: string
 }

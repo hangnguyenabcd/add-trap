@@ -13,9 +13,47 @@ body{
     background-color: #d0d7db !important;
     color: #a4afbf !important;
 }
- .ui-breadcrumb {
+.ui-breadcrumb {
     border: 0px !important;
  }
- .ui-g-8 {
+.ui-g-8 {
     width: 35% !important;
+}
+.ui-widget-content p {
+    margin: 0px !important;
+}
+body .ui-dialog {
+    width: 300px !important;
+}
+.ui-widget {
+    text-align: center;
+}
+body .ui-widget-content p {
+    text-align: left;
+}
+
+
+body .ui-panelmenu .ui-panelmenu-header > a {
+    text-align: left;
+}
+body .ui-table .ui-table-thead > tr > th {
+    color: #666666 !important;
+    background-color: #ebedf0 !important;
+}
+body .ui-breadcrumb {
+    text-align: left;
+}
+.ui-menuitem-text {
+    color: #a4afbf !important ;
+}
+body .ui-menubar {
+    padding: 0;
+    background-color: black !important;
+    border: 0px solid black !important;
+}
+.ui-menubar .ui-menubar-root-list>.ui-menuitem>.ui-menuitem-link>.ui-submenu-icon {
+    color: #a4afbf !important;
+}
+.ui-table .ui-paginator-bottom {
+    text-align: right;
 }

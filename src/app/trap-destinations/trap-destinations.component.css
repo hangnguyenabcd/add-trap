@@ -5,3 +5,7 @@
     margin-bottom: 10px;
     margin-top: -9px;
 }
+.router-link {
+    text-decoration: none;
+    color: black;
+}

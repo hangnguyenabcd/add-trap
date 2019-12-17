@@ -1,2 +1,20 @@
-<!-- <app-home></app-home> -->
-<app-menu></app-menu>
+
+<router-outlet></router-outlet>
+<div class="header">
+    <img #img src="../../assets/vnf.png" alt="Logo" class="header-image">
+    <div class="icon-group">
+        <i class="pi pi-bell" id="bell"></i>
+        <i class="pi pi-user" id="user"></i>
+        <p-menubar [model]="items" class="menu-mega"></p-menubar>
+    </div>
+</div>
+
+<div>
+    <div class="menu-bar">
+        <app-menubar></app-menubar>
+    </div>
+
+    <div class="content">
+            <router-outlet></router-outlet>
+    </div>
+</div>

@@ -37,7 +37,7 @@ export class MenubarComponent implements OnInit {
             {label: 'Settings'},
             {label: 'Database'},
             {label: 'VNFMs'},
-            {label: 'Trap Destinations'},
+            {label: 'Trap Destinations', routerLink: '/home'},
             {label: 'Continuity Plans'},
             {label: 'REST APIs'}
         ]

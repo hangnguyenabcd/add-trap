@@ -1,41 +1,41 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppRoutingModule } from './app-routing.module';
 import { HttpClientModule } from '@angular/common/http';
-import {AccordionModule} from 'primeng/accordion';
-import {PanelMenuModule} from 'primeng/panelmenu';
-import {MenubarModule} from 'primeng/menubar';
-import {PaginatorModule} from 'primeng/paginator';
-import {CommonModule} from '@angular/common';
-import {ButtonModule} from 'primeng/button';
-import { TabViewModule} from 'primeng/tabview';
+import { AccordionModule } from 'primeng/accordion';
+import { PanelMenuModule } from 'primeng/panelmenu';
+import { MenubarModule } from 'primeng/menubar';
+import { PaginatorModule } from 'primeng/paginator';
+import { CommonModule } from '@angular/common';
+import { ButtonModule } from 'primeng/button';
+import { TabViewModule } from 'primeng/tabview';
 import { ContextMenuModule } from 'primeng/contextmenu';
-import {TableModule} from 'primeng/table';
-import {CodeHighlighterModule} from 'primeng/codehighlighter';
-import {BreadcrumbModule} from 'primeng/breadcrumb';
-import {InputSwitchModule} from 'primeng/inputswitch';
-import {DropdownModule} from 'primeng/dropdown';
-import {FormsModule,ReactiveFormsModule} from '@angular/forms';
-import {MessageModule} from 'primeng/message';
+import { TableModule } from 'primeng/table';
+import { CodeHighlighterModule } from 'primeng/codehighlighter';
+import { BreadcrumbModule } from 'primeng/breadcrumb';
+import { InputSwitchModule } from 'primeng/inputswitch';
+import { DropdownModule } from 'primeng/dropdown';
+import { FormsModule,ReactiveFormsModule } from '@angular/forms';
+import { MessageModule } from 'primeng/message';
+import { DialogModule } from 'primeng/dialog';
 
-import {HomeService} from './home/home.service';
+import { HomeService } from './home/home.service';
+
 
 import { AppComponent } from './app.component';
-import { HomeComponent } from './home/home.component';
-import { MenuComponent } from './menu/menu.component';
 import { MenubarComponent } from './menubar/menubar.component';
 import { TrapDestinationsComponent } from './trap-destinations/trap-destinations.component';
-import { AddTrapDestinationsComponent } from './add-trap-destinations/add-trap-destinations.component'
+import { AddTrapDestinationsComponent } from './add-trap-destinations/add-trap-destinations.component';
+import { DialogDeleteComponent } from './dialog-delete/dialog-delete.component'
 
 @NgModule({
   declarations: [
     AppComponent,
-    HomeComponent,
-    MenuComponent,
     MenubarComponent,
     TrapDestinationsComponent,
-    AddTrapDestinationsComponent
+    AddTrapDestinationsComponent,
+    DialogDeleteComponent
   ],
   imports: [
     CommonModule,
@@ -58,8 +58,9 @@ import { AddTrapDestinationsComponent } from './add-trap-destinations/add-trap-d
     FormsModule,
     ReactiveFormsModule,
     MessageModule,
+    DialogModule
   ],
-  providers: [HomeService],
+  providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -1,0 +1,9 @@
+<p-dialog id="dlgelement" header="Delete" [(visible)]="display">
+    <p>Are you sure?</p>
+        <footer>
+            <div class="button-group">
+              <p-button (click)="deleteFromDb()" label="No" class="button-no"></p-button>
+              <p-button (click)="deleteFromDb()" label="Yes"></p-button>
+            </div>
+        </footer>
+</p-dialog>

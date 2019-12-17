@@ -1,8 +1,8 @@
 {
     "data": [
-        {"destinationName": "Test 02", "iPAddress": "192.168.2.1", "portNumber": "80", "sNMPTrapVersion": "v2", "status":"Enable"},
-        {"destinationName": "Test 03", "iPAddress": "192.168.3.1", "portNumber": "90", "sNMPTrapVersion": "v2", "status":"Enable"},
-        {"destinationName": "Test 04", "iPAddress": "192.168.4.1", "portNumber": "81", "sNMPTrapVersion": "v2", "status":"Enable"},
-        {"destinationName": "Test 05", "iPAddress": "192.168.2.5", "portNumber": "70", "sNMPTrapVersion": "v2", "status":"Enable"}
+        {"id":"1","destinationName": "Test 02", "ipAddress": "192.168.2.1", "portNumber": "80", "version": "v2", "status":"Enable"},
+        {"id":"2","destinationName": "Test 03", "ipAddress": "192.168.3.1", "portNumber": "90", "version": "v3", "status":"Disable"},
+        {"id":"3","destinationName": "Test 04", "ipAddress": "192.168.4.1", "portNumber": "81", "version": "v3", "status":"Enable"},
+        {"id":"4","destinationName": "Test 05", "ipAddress": "192.168.2.5", "portNumber": "70", "version": "v2", "status":"Disable"}
     ]
 }
