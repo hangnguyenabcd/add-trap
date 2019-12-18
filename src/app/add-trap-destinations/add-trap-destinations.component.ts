@@ -1,16 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { MenuItem } from 'primeng/api';
 import { SelectItem } from 'primeng/api';
-import { SelectItemGroup } from 'primeng/api';
 import { ActivatedRoute } from '@angular/router';
 import { Validators, FormControl, FormGroup, FormBuilder } from '@angular/forms';
 import { MessageService } from 'primeng/api';
-import { TrapdestinationsService } from '../service/trapdestinations.service'
 
-// interface City {
-//   name: string,
-//   code: string
-// }
+import { TrapdestinationsService } from '../service/trapdestinations.service';
+
+import { SHOWTITLEADD, SHOWTITLEEDIT } from '../config/constanst'
 
 @Component({
   selector: 'app-add-trap-destinations',
@@ -19,12 +16,10 @@ import { TrapdestinationsService } from '../service/trapdestinations.service'
   providers: [MessageService]
 })
 export class AddTrapDestinationsComponent implements OnInit {
-  private items: MenuItem[];
-  // cities: City[];
   userform: FormGroup;
 
-  submitted: boolean;
-
+  private add: MenuItem[] = SHOWTITLEADD;
+  private edit: MenuItem[] = SHOWTITLEEDIT;
   trapversion: SelectItem[];
   authenticationProtocol: SelectItem[];
   privacyProtocol: SelectItem[];
@@ -33,8 +28,9 @@ export class AddTrapDestinationsComponent implements OnInit {
   V3 = false;
   authenticationV3 = false;
   privacyV3 = false;
+  submitted: boolean;
+  titleForm = SHOWTITLEADD[1].label;
   private editItem: any;
-
   constructor(
     private fb: FormBuilder,
     private messageService: MessageService,
@@ -46,6 +42,8 @@ export class AddTrapDestinationsComponent implements OnInit {
     this.createForm();
     const id = +this.route.snapshot.paramMap.get('id')
     if (id != 0) {
+      this.add= SHOWTITLEEDIT;
+      this.titleForm = SHOWTITLEEDIT[1].label
       this.editItem = this.service.getData(id);
       this.userform.get('status').setValue(this.editItem.status);
       this.userform.get('destinationName').setValue(this.editItem.destinationName);
@@ -74,13 +72,9 @@ export class AddTrapDestinationsComponent implements OnInit {
         this.userform.get('privacyProtocol').setValue(this.editItem.privacyProtocol);
       }
     }
-
   }
+
   createForm() {
-    this.items = [
-      { label: 'Trap Forwarding', routerLink: '/home' },
-      { label: 'Add Trap Destination' }
-    ];
     this.userform = this.fb.group({
       'destinationName': new FormControl('', Validators.required),
       'ipAddress': new FormControl('', [Validators.required, Validators.pattern('((^\s*((([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])\.){3}([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5]))\s*$)|(^\s*((([0-9A-Fa-f]{1,4}:){7}([0-9A-Fa-f]{1,4}|:))|(([0-9A-Fa-f]{1,4}:){6}(:[0-9A-Fa-f]{1,4}|((25[0-5]|2[0-4]\d|1\d\d|[1-9]?\d)(\.(25[0-5]|2[0-4]\d|1\d\d|[1-9]?\d)){3})|:))|(([0-9A-Fa-f]{1,4}:){5}(((:[0-9A-Fa-f]{1,4}){1,2})|:((25[0-5]|2[0-4]\d|1\d\d|[1-9]?\d)(\.(25[0-5]|2[0-4]\d|1\d\d|[1-9]?\d)){3})|:))|(([0-9A-Fa-f]{1,4}:){4}(((:[0-9A-Fa-f]{1,4}){1,3})|((:[0-9A-Fa-f]{1,4})?:((25[0-5]|2[0-4]\d|1\d\d|[1-9]?\d)(\.(25[0-5]|2[0-4]\d|1\d\d|[1-9]?\d)){3}))|:))|(([0-9A-Fa-f]{1,4}:){3}(((:[0-9A-Fa-f]{1,4}){1,4})|((:[0-9A-Fa-f]{1,4}){0,2}:((25[0-5]|2[0-4]\d|1\d\d|[1-9]?\d)(\.(25[0-5]|2[0-4]\d|1\d\d|[1-9]?\d)){3}))|:))|(([0-9A-Fa-f]{1,4}:){2}(((:[0-9A-Fa-f]{1,4}){1,5})|((:[0-9A-Fa-f]{1,4}){0,3}:((25[0-5]|2[0-4]\d|1\d\d|[1-9]?\d)(\.(25[0-5]|2[0-4]\d|1\d\d|[1-9]?\d)){3}))|:))|(([0-9A-Fa-f]{1,4}:){1}(((:[0-9A-Fa-f]{1,4}){1,6})|((:[0-9A-Fa-f]{1,4}){0,4}:((25[0-5]|2[0-4]\d|1\d\d|[1-9]?\d)(\.(25[0-5]|2[0-4]\d|1\d\d|[1-9]?\d)){3}))|:))|(:(((:[0-9A-Fa-f]{1,4}){1,7})|((:[0-9A-Fa-f]{1,4}){0,5}:((25[0-5]|2[0-4]\d|1\d\d|[1-9]?\d)(\.(25[0-5]|2[0-4]\d|1\d\d|[1-9]?\d)){3}))|:)))(%.+)?\s*$))')]),
@@ -96,8 +90,8 @@ export class AddTrapDestinationsComponent implements OnInit {
       'privacyPassphrase': new FormControl(''),
       'privacyProtocol': new FormControl(''),
       'status': new FormControl(''),
-
     });
+
     this.trapversion = [];
     this.trapversion.push({ label: 'Select Version', value: '' });
     this.trapversion.push({ label: 'V2', value: 'V2' });
@@ -113,11 +107,14 @@ export class AddTrapDestinationsComponent implements OnInit {
     this.privacyProtocol.push({ label: 'V3', value: 'V3' });
 
     this.userform.valueChanges.subscribe(data => {
-      console.log(this.userform);
     })
   }
   onSubmit() {
-    console.warn(this.userform);
+    // this.submitted = true;
+    // if (this.userform.valid) {
+    //   this.service.add(this.userform.value);
+    console.log(this.userform);
+    // }
   }
 
   handleV3() {
@@ -143,34 +140,44 @@ export class AddTrapDestinationsComponent implements OnInit {
       this.enablePrivacyForm(false);
     }
   }
-  enableVersionV3(enable: boolean) {
+
+  enableVersionV3(enable) {
     if (enable) {
       this.V3 = true;
-      this.userform.get('engine').setValidators([Validators.required]); this.userform.get('engine').updateValueAndValidity();
-      this.userform.get('v3user').setValidators([Validators.required]); this.userform.get('v3user').updateValueAndValidity();
+      this.userform.get('engine').setValidators([Validators.required]);
+      this.userform.get('engine').updateValueAndValidity();
+      this.userform.get('v3user').setValidators([Validators.required]);
+      this.userform.get('v3user').updateValueAndValidity();
     } else {
       this.V3 = false;
       this.enableAutForm(false);
       this.enablePrivacyForm(false);
-      this.userform.get('engine').clearValidators(); this.userform.get('engine').updateValueAndValidity();
-      this.userform.get('v3user').clearValidators(); this.userform.get('v3user').updateValueAndValidity();
+      this.userform.get('engine').clearValidators();
+      this.userform.get('engine').updateValueAndValidity();
+      this.userform.get('v3user').clearValidators();
+      this.userform.get('v3user').updateValueAndValidity();
       this.resetControls(['engine', 'v3user', 'authentication', 'privacy'])
     }
   }
-  enableAutForm(enable: boolean) {
+
+  enableAutForm(enable) {
     if (enable) {
       this.authenticationV3 = true;
-      this.userform.get('authenticationPassphrase').setValidators([Validators.required]); this.userform.get('authenticationPassphrase').updateValueAndValidity();
+      this.userform.get('authenticationPassphrase').setValidators([Validators.required]);
+      this.userform.get('authenticationPassphrase').updateValueAndValidity();
     } else {
       this.authenticationV3 = false;
-      this.userform.get('authenticationPassphrase').clearValidators(); this.userform.get('authenticationPassphrase').updateValueAndValidity();
+      this.userform.get('authenticationPassphrase').clearValidators();
+      this.userform.get('authenticationPassphrase').updateValueAndValidity();
       this.resetControls(['authenticationPassphrase', 'authenticationProtocol'])
     }
   }
-  enablePrivacyForm(enable: boolean) {
+
+  enablePrivacyForm(enable) {
     if (enable) {
       this.privacyV3 = true;
-      this.userform.get('privacyPassphrase').setValidators([Validators.required]); this.userform.get('privacyPassphrase').updateValueAndValidity();
+      this.userform.get('privacyPassphrase').setValidators([Validators.required]);
+      this.userform.get('privacyPassphrase').updateValueAndValidity();
     } else {
       this.privacyV3 = false;
       this.userform.get('privacyPassphrase').clearValidators();
@@ -178,6 +185,7 @@ export class AddTrapDestinationsComponent implements OnInit {
       this.resetControls(['privacyPassphrase', 'privacyProtocol'])
     }
   }
+
   resetControls(controls: string[]) {
     controls.forEach(control => {
       this.userform.get(control).reset();

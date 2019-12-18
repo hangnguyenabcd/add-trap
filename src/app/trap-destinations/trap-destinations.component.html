@@ -1,55 +1,69 @@
 <div class="add-trap">
-    <h1 style="font-size: larger;">Trap Destinations</h1>
-    <p-button label="Add Trap Destinations" icon="pi pi-plus" iconPos="right" styleClass="ui-button-danger"
-        class="button-add" routerLink="/add"></p-button>
+	<h1 style="font-size: larger;">Trap Destinations</h1>
+	<p-button label="Add Trap Destinations" icon="pi pi-plus" iconPos="right" styleClass="ui-button-danger"
+		class="button-add" routerLink="/add"></p-button>
 
+	<p-table [columns]="cols" [value]="trapDes" [paginator]="true" [rows]="5" [totalRecords]="15"
+		[rowsPerPageOptions]="[5,10,15]">
+		<ng-template pTemplate="header" let-columns>
+			<tr>
+				<th *ngFor="let col of columns" [pSortableColumn]="col.field">
+					{{col.header}}
+					<p-sortIcon [field]="col.field" ariaLabel="Activate to sort"
+						ariaLabelDesc="Activate to sort in descending order" ariaLabelAsc="Activate to sort in ascending order">
+					</p-sortIcon>
+				</th>
+				<th>Delete</th>
+			</tr>
+		</ng-template>
 
-    <p-table [columns]="cols" [value]="trapDes" [paginator]="true" [rows]="5" [totalRecords]="50"
-        [rowsPerPageOptions]="[10,20,30]">
-        <ng-template pTemplate="header" let-columns>
-            <tr>
-                <th *ngFor="let col of columns" [pSortableColumn]="col.field">
-                    {{col.header}}
-                    <p-sortIcon [field]="col.field" ariaLabel="Activate to sort"
-                        ariaLabelDesc="Activate to sort in descending order"
-                        ariaLabelAsc="Activate to sort in ascending order"></p-sortIcon>
-                </th>
-                <th>Delete</th>
-            </tr>
-        </ng-template>
-        <ng-template pTemplate="body" let-rowData let-columns="columns">
-            <tr>
-                <td *ngFor="let col of columns">
-                    <p *ngIf="col.field == 'destinationName'">
-                        <a [routerLink]="['/edit/',rowData.id]">
-                            {{ rowData['destinationName'] }}
-                        </a>
-                    </p>
+		<ng-template pTemplate="body" let-rowData let-columns="columns">
+			<tr>
+				<td *ngFor="let col of columns">
+					<p *ngIf="col.field == 'destinationName'">
+						<a [routerLink]="['/edit/',rowData.id]">
+							{{ rowData['destinationName'] }}
+						</a>
+					</p>
 
-                    <p *ngIf="col.field !='status' && col.field !='destinationName' && col.field !='version'">
-                        {{rowData[col.field]}}
-                    </p>
-                    <p *ngIf="col.field =='version'">
-                       {{rowData['version']}}
-                    </p>
+					<p *ngIf="col.field !='status' && col.field !='destinationName' && col.field !='version'">
+						{{rowData[col.field]}}
+					</p>
+					<p *ngIf="col.field =='version'">
+						{{rowData['version']}}
+					</p>
 
-                    <p *ngIf="col.field =='status' && rowData[col.field]">
-                        <i class="pi pi-check-circle" style="color: green;"></i>Enable
-                    </p>
+					<p *ngIf="col.field =='status' && rowData[col.field]">
+						<i class="pi pi-check-circle" style="color: green;"></i>Enable
+					</p>
 
-                    <p *ngIf="col.field =='status' && !rowData[col.field]">
-                        <i class="pi pi-times-circle" style="color: red;"></i>Disable
-                    </p>
-                </td>
-                <td>
-                    <i class="pi pi-trash" id="bell" (click)="Delete(rowData)"></i>
-                </td>
-            </tr>
-        </ng-template>
-        <ng-template pTemplate="paginatorleft">
-            Dương chó Điên ..ahahaha
-          </ng-template>
-    </p-table>
+					<p *ngIf="col.field =='status' && !rowData[col.field]">
+						<i class="pi pi-times-circle" style="color: red;"></i>Disable
+					</p>
+				</td>
+				<td>
+					<i class="pi pi-trash" id="bell" (click)="delete(rowData)"></i>
+				</td>
+			</tr>
+		</ng-template>
+
+		<ng-template #custtable pTemplate="paginatorleft" let-state >
+				Showing {{state.totalRecords < 1 ? 0 : state.first + 1}} to
+				{{state.totalRecords > 0 ? ((state.rows + state.first) <= state.totalRecords ? (state.rows + state.first) :
+					state.totalRecords) : 0}} of {{state.totalRecords ? state.totalRecords : 0}} records
+		</ng-template>
+	</p-table>
 </div>
+<p-toast>
+	<ng-template let-message pTemplate="message">
+		<div style="padding-right: 215px">
+		<i class="pi pi-info" style="font-size: 2.5em"></i>
+		<p class="message">{{message.summary}}</p>
+	</div>
+    <p class="message-detail">{{message.detail}}</p>
+		<button type="button" pButton (click)="onReject()" label="Clear all" class="ui-button-secondary button-toast"></button>
+	</ng-template>
+</p-toast>
+
 <app-dialog-delete *ngIf="isShowDialogDelete" (Myemit)="setIsShowConrfirm($event)" [DataInputdelete]="dataInputDelete">
 </app-dialog-delete>

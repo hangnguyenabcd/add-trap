@@ -2,6 +2,8 @@
 body{
     margin: 0px !important;
     height: auto;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 14px;
 }
 .ui-panelmenu .ui-panelmenu-header > a {
     border: 0px !important;
@@ -23,7 +25,7 @@ body{
     margin: 0px !important;
 }
 body .ui-dialog {
-    width: 300px !important;
+    width: 600px !important;
 }
 .ui-widget {
     text-align: center;
@@ -31,8 +33,6 @@ body .ui-dialog {
 body .ui-widget-content p {
     text-align: left;
 }
-
-
 body .ui-panelmenu .ui-panelmenu-header > a {
     text-align: left;
 }
@@ -59,17 +59,28 @@ body .ui-menubar {
     text-align: right;
 }
 body .ui-corner-all {
-    border-radius: 0px !important; 
+    border-radius: 0px !important;
 }
 .ui-panelmenu .ui-panelmenu-content .ui-menuitem {
     background-color: #dee2e4 ;
+    /* background-color: #333 ; */
 }
 .ui-dropdown label.ui-dropdown-label {
     text-align: left;
 }
 .ui-paginator .ui-paginator-left-content {
     padding-top: 8px;
-    font-size: 14px;
-    padding-left: 5px;
-    color: rgb(161, 160, 160);
+    padding-left: 10px;
+    color: black;
+    font-weight: 500;
+}
+body .ui-dialog .ui-dialog-titlebar .ui-dialog-title {
+    float: left !important;
+}
+.ui-g {
+    display: inherit !important;
+}
+body .ui-toast .ui-toast-message.ui-toast-message-info {
+    background-color: #7ff14b !important;
+    height: 155px;
 }

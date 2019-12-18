@@ -19,9 +19,7 @@ import { DropdownModule } from 'primeng/dropdown';
 import { FormsModule,ReactiveFormsModule } from '@angular/forms';
 import { MessageModule } from 'primeng/message';
 import { DialogModule } from 'primeng/dialog';
-
-import { HomeService } from './home/home.service';
-
+import { ToastModule } from 'primeng/toast';
 
 import { AppComponent } from './app.component';
 import { MenubarComponent } from './menubar/menubar.component';
@@ -58,7 +56,8 @@ import { DialogDeleteComponent } from './dialog-delete/dialog-delete.component'
     FormsModule,
     ReactiveFormsModule,
     MessageModule,
-    DialogModule
+    DialogModule,
+    ToastModule
   ],
   providers: [],
   bootstrap: [AppComponent]
