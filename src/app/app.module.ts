@@ -20,12 +20,15 @@ import { FormsModule,ReactiveFormsModule } from '@angular/forms';
 import { MessageModule } from 'primeng/message';
 import { DialogModule } from 'primeng/dialog';
 import { ToastModule } from 'primeng/toast';
+import { MessageService } from 'primeng/api';
+import { RbnCommonLibModule } from 'rbn-common-lib';
 
 import { AppComponent } from './app.component';
 import { MenubarComponent } from './menubar/menubar.component';
 import { TrapDestinationsComponent } from './trap-destinations/trap-destinations.component';
 import { AddTrapDestinationsComponent } from './add-trap-destinations/add-trap-destinations.component';
-import { DialogDeleteComponent } from './dialog-delete/dialog-delete.component'
+import { DialogDeleteComponent } from './dialog-delete/dialog-delete.component';
+
 
 @NgModule({
   declarations: [
@@ -36,6 +39,7 @@ import { DialogDeleteComponent } from './dialog-delete/dialog-delete.component'
     DialogDeleteComponent
   ],
   imports: [
+    RbnCommonLibModule,
     CommonModule,
     BrowserModule,
     AppRoutingModule,
@@ -59,7 +63,7 @@ import { DialogDeleteComponent } from './dialog-delete/dialog-delete.component'
     DialogModule,
     ToastModule
   ],
-  providers: [],
+  providers: [MessageService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

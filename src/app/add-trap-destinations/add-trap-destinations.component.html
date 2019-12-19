@@ -34,7 +34,10 @@
 					<div class="ui-g-8">
 						<input id="address" required type="text" name="ipAddress" formControlName="ipAddress" class="input-form">
 						<p-message severity="error" text="IP Address (v4/v6) is required"
-							*ngIf="userform.controls['ipAddress'].errors?.required && userform.controls['ipAddress'].touched || userform.controls['ipAddress'].errors?.pattern">
+							*ngIf="userform.controls['ipAddress'].errors?.required && userform.controls['ipAddress'].touched">
+						</p-message>
+						<p-message severity="error" text="not IP Address (v4/v6 format)"
+							*ngIf="userform.controls['ipAddress'].errors?.pattern && userform.controls['ipAddress'].touched">
 						</p-message>
 					</div>
 				</div>
@@ -46,8 +49,11 @@
 					<div class="ui-g-8">
 						<input id="portNumber" required type="text" name="portNumber" formControlName="portNumber"
 							class="input-form">
-						<p-message severity="error" text="Port Number Name is required"
-							*ngIf="userform.controls['portNumber'].errors?.required && userform.controls['portNumber'].dirty || userform.controls['portNumber'].errors?.pattern">
+						<p-message severity="error" text="Port Number is required"
+							*ngIf="userform.controls['portNumber'].errors?.required && userform.controls['portNumber'].touched">
+						</p-message>
+						<p-message severity="error" text="not Port Number is required"
+							*ngIf="userform.controls['portNumber'].errors?.pattern && userform.controls['portNumber'].touched">
 						</p-message>
 					</div>
 				</div>
@@ -114,26 +120,27 @@
 						</div>
 						<div *ngIf="authenticationV3">
 							<div class="ui-g">
-							<div class="ui-g-12">
-								<div class="ui-g-4">
-									SNMP v3 Authentication Passphrase<span class="char">*</span>
-								</div>
-								<div class="ui-g-8">
-									<input id="address" required type="text" name="authenticationPassphrase"
-										formControlName="authenticationPassphrase" class="input-form">
-								</div>
-							</div>
-						</div>
-						<div class="ui-g">
-							<div class="ui-g-12">
-								<div class="ui-g-4">
-									SNMP V3 Authentication Protocol <span class="char">*</span>
-								</div>
-								<div class="ui-g-8">
-									<p-dropdown [options]="authenticationProtocol" formControlName="authenticationProtocol"></p-dropdown>
+								<div class="ui-g-12">
+									<div class="ui-g-4">
+										SNMP v3 Authentication Passphrase<span class="char">*</span>
+									</div>
+									<div class="ui-g-8">
+										<input id="address" required type="text" name="authenticationPassphrase"
+											formControlName="authenticationPassphrase" class="input-form">
+									</div>
 								</div>
 							</div>
-						</div>
+							<div class="ui-g">
+								<div class="ui-g-12">
+									<div class="ui-g-4">
+										SNMP V3 Authentication Protocol <span class="char">*</span>
+									</div>
+									<div class="ui-g-8">
+										<p-dropdown [options]="authenticationProtocol" formControlName="authenticationProtocol">
+										</p-dropdown>
+									</div>
+								</div>
+							</div>
 						</div>
 
 						<div class="ui-g-12">
@@ -175,7 +182,7 @@
 
 		<div class="button-model">
 			<div class="button-group">
-				<p-button label="Cancel" icon="pi pi-times" iconPos="left" styleClass="ui-button-secondary"
+				<p-button label="Cancel" (click)="onCancel()" icon="pi pi-times" iconPos="left" styleClass="ui-button-secondary"
 					class="button-cancel"></p-button>
 				<p-button label="Save" icon="pi pi-check" iconPos="left" styleClass="ui-button-danger"
 					[disabled]="!userform.valid"></p-button>

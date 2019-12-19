@@ -47,23 +47,17 @@
 			</tr>
 		</ng-template>
 
-		<ng-template #custtable pTemplate="paginatorleft" let-state >
-				Showing {{state.totalRecords < 1 ? 0 : state.first + 1}} to
-				{{state.totalRecords > 0 ? ((state.rows + state.first) <= state.totalRecords ? (state.rows + state.first) :
-					state.totalRecords) : 0}} of {{state.totalRecords ? state.totalRecords : 0}} records
+		<ng-template #custtable pTemplate="paginatorleft" let-state>
+			Showing {{state.totalRecords < 1 ? 0 : state.first + 1}} to
+			{{state.totalRecords > 0 ? ((state.rows + state.first) <= state.totalRecords ? (state.rows + state.first) :
+					state.totalRecords) : 0}} of {{state.totalRecords ? state.totalRecords : 0}} record
 		</ng-template>
 	</p-table>
 </div>
-<p-toast>
-	<ng-template let-message pTemplate="message">
-		<div style="padding-right: 215px">
-		<i class="pi pi-info" style="font-size: 2.5em"></i>
-		<p class="message">{{message.summary}}</p>
-	</div>
-    <p class="message-detail">{{message.detail}}</p>
-		<button type="button" pButton (click)="onReject()" label="Clear all" class="ui-button-secondary button-toast"></button>
-	</ng-template>
-</p-toast>
 
-<app-dialog-delete *ngIf="isShowDialogDelete" (Myemit)="setIsShowConrfirm($event)" [DataInputdelete]="dataInputDelete">
+<app-dialog-delete *ngIf="isShowDialogDelete" (myEmit)="setIsShowConrfirm($event)" [dataInputDelete]="dataInputDelete">
 </app-dialog-delete>
+
+<div class="common">
+	<rbn-common-table [data]="trapDes" [cols]="cols"></rbn-common-table>
+</div>

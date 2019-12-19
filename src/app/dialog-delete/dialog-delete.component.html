@@ -1,11 +1,11 @@
 
 <p-dialog id="dlgelement" header="Delete" [(visible)]="display">
-    <p>Are you sure you want to delete the trap destination name test ?</p>
+    <p>Are you sure you want to delete the trap destination {{dataInputDelete.destinationName}} ?</p>
       <p>This action cannot be undone</p>
         <footer>
             <div class="button-group">
-              <p-button (click)="deleteFromDb()" label="No" class="button-no"></p-button>
-              <p-button (click)="onClick($event)" label="Yes"></p-button>
+              <p-button (click)="cancelFromDb()" label="No" class="button-no"></p-button>
+              <p-button (click)="onClick()" label="Yes"></p-button>
             </div>
         </footer>
 </p-dialog>

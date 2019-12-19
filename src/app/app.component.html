@@ -7,8 +7,19 @@
 		<p-menubar [model]="items" class="menu-mega"></p-menubar>
 	</div>
 </div>
+<p-toast>
+	<ng-template let-message pTemplate="message">
+		<div style="padding-right: 215px">
+			<i class="pi pi-info" style="font-size: 2.5em"></i>
+			<p class="message">{{message.summary}}</p>
+		</div>
+		<p class="message-detail">{{message.detail}}</p>
+		<button type="button" pButton (click)="clearAll()" label="Clear all"
+			class="ui-button-secondary button-toast"></button>
+	</ng-template>
+</p-toast>
 
-<div>
+<div class="container">
 	<div class="menu-bar">
 		<app-menubar></app-menubar>
 	</div>

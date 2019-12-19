@@ -1,0 +1,21 @@
+{
+  "data": [
+    {
+      "destinationName": "jjoi",
+      "ipAddress": "1.1.1.1",
+      "portNumber": "12",
+      "community": "com",
+      "version": "V2",
+      "engine": null,
+      "v3user": null,
+      "authentication": null,
+      "authenticationPassphrase": null,
+      "authenticationProtocol": null,
+      "privacy": null,
+      "privacyPassphrase": null,
+      "privacyProtocol": null,
+      "status": true,
+      "id": 1
+    }
+  ]
+}

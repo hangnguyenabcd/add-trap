@@ -2,18 +2,18 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { TrapdestinationsService } from '../service/trapdestinations.service';
 import { Trapdestinations } from '../trap-destinations';
-import { MessageService } from 'primeng/api'
+import { MessageService } from 'primeng/api';
 
 @Component({
   selector: 'app-trap-destinations',
   templateUrl: './trap-destinations.component.html',
-  styleUrls: ['./trap-destinations.component.css'],
-  providers: [MessageService]
+  styleUrls: ['./trap-destinations.component.css']
 })
 export class TrapDestinationsComponent implements OnInit {
   trapDes: Trapdestinations[];
   cols: any[]=[];
   isShowDialogDelete = false;
+  isShowDialogUpdate = false;
   dataInputDelete = {};
 
   constructor(private trapDestinationsService: TrapdestinationsService,
@@ -31,14 +31,15 @@ export class TrapDestinationsComponent implements OnInit {
     ];
     this.getAll()
   }
-  getAll(){
-    this.trapDes = this.trapDestinationsService.getAll()
-  }
-  // getAll() {
-  //   this.trapDestinationsService.getAll().subscribe(res => {
-  //     this.trapDes = res
-  //   })
+  // getAll(){
+  //   this.trapDes = this.trapDestinationsService.getAll()
   // }
+  getAll() {
+    this.trapDestinationsService.getAll().subscribe(res => {
+      console.log(res);
+      this.trapDes = res
+    })
+  }
   delete(data: Trapdestinations){
     this.isShowDialogDelete = true;
     this.dataInputDelete = data;
@@ -46,6 +47,14 @@ export class TrapDestinationsComponent implements OnInit {
 
   setIsShowConrfirm(event: boolean){
     this.isShowDialogDelete = event;
-    this.messageService.add({severity: 'info', summary: 'Info', detail: 'Snmp Destination tesst has been deleted from VNFM.'});
+    if(event){
+      this.isShowDialogDelete = false;
+      this.messageService.add({severity: 'info', summary: 'Infor', detail: 'Snmp Destination test has been deleted from VNFM.'});
+      this.getAll();
+    }
+  }
+
+  clearAll(){
+    this.messageService.clear();
   }
 }
