@@ -3,7 +3,7 @@ import { MenuItem } from 'primeng/api';
 import { SelectItem } from 'primeng/api';
 import { Validators, FormControl, FormGroup, FormBuilder } from '@angular/forms';
 import { MessageService } from 'primeng/api';
-import { Router } from '@angular/router'
+import { Router } from '@angular/router';
 import { ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
 

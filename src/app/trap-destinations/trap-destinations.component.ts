@@ -1,8 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { MessageService } from 'primeng/api';
+import { FilterTypes, FieldName } from 'rbn-common-lib';
+import { TranslateService } from '@ngx-translate/core';
+
 import { TrapdestinationsService } from '../service/trapdestinations.service';
 import { Trapdestinations } from '../trap-destinations';
-import { MessageService } from 'primeng/api';
+
 
 @Component({
   selector: 'app-trap-destinations',
@@ -10,39 +14,117 @@ import { MessageService } from 'primeng/api';
   styleUrls: ['./trap-destinations.component.css']
 })
 export class TrapDestinationsComponent implements OnInit {
-  trapDes: Trapdestinations[];
+  trapDes: Trapdestinations[] = [];
+  colus: any[]=[];
   cols: any[]=[];
   isShowDialogDelete = false;
-  isShowDialogUpdate = false;
-  dataInputDelete = {};
+  dataInputDelete?: any;
+  fieldName = FieldName;
 
-  constructor(private trapDestinationsService: TrapdestinationsService,
-    private router: Router, private messageService: MessageService) {}
+  constructor(
+    private trapDestinationsService: TrapdestinationsService,
+    private messageService: MessageService,
+    private router: Router,
+    private translate: TranslateService) {
+    }
 
   ngOnInit() {
-    // this.trapDestinationsService.getCarsSmall().then(res => this.trapDes = res);
-    this.cols = [
-      { field: 'destinationName', header: 'Destination Name' },
-      { field: 'ipAddress', header: 'IP Address' },
-      { field: 'portNumber', header: 'Port Number' },
-      { field: 'version', header: 'SNMP Trap Version' },
-      { field: 'status', header: 'Status' },
+    // this.colus = [
+    //   { field: 'destinationName', header: 'Destination Name' },
+    //   { field: 'ipAddress', header: 'IP Address' },
+    //   { field: 'portNumber', header: 'Port Number' },
+    //   { field: 'version', header: 'SNMP Trap Version' },
+    //   { field: 'status', header: 'Status' },
 
+    // ];
+    this.cols = [
+      {
+        field: 'destinationName',
+        header: 'Destination Name',
+        sort: true,
+        colsEnable: true,
+        type: FilterTypes.InputText,
+        data: [],
+        options: {
+          model: '',
+          usingLink: true
+        }
+      },
+      {
+        field: 'ipAddress',
+        header: 'Ip Address',
+        sort: true,
+        colsEnable: true,
+        type: FilterTypes.Dropdown,
+        data: [],
+        options: {
+          model: ''
+        }
+      },
+      {
+        field: 'portNumber',
+        header: 'Port Number',
+        sort: true,
+        colsEnable: true,
+        type: FilterTypes.Dropdown,
+        data: [],
+        options: {
+          model: ''
+        }
+      },
+      {
+        field: 'version',
+        header: 'SNMP Trap Version',
+        sort: true,
+        colsEnable: true,
+        type: FilterTypes.Dropdown,
+        data: [],
+        options: {
+          model: ''
+        }
+      },
+      {
+        field: 'status',
+        header: 'Status',
+        sort: true,
+        colsEnable: true,
+        type: FilterTypes.Dropdown,
+        data: [],
+        options: {
+          model: ''
+        }
+      },
+      {
+        field: 'action',
+        header: 'Delete',
+        sort: false,
+        colsEnable: true,
+        options: {
+          useDeleteIcon: true
+        }
+      }
     ];
     this.getAll()
   }
-  // getAll(){
-  //   this.trapDes = this.trapDestinationsService.getAll()
-  // }
+
   getAll() {
     this.trapDestinationsService.getAll().subscribe(res => {
-      console.log(res);
-      this.trapDes = res
+      this.trapDes = res;
+      this.trapDes.map((item: any) => {
+        if (item.status) {
+          item.status = "Enable";
+          item.statusPreHtml = '<span class="status-icon"><i class="fa fa-fw fa-check-circle-o"></i></span>';
+        } else {
+          item.status = "Disable";
+          item.statusPreHtml = '<span class="status-icon"><i class="fa fa-fw fa-times-circle-o"></i></span>';
+        }
+      });
     })
   }
-  delete(data: Trapdestinations){
-    this.isShowDialogDelete = true;
+
+  showDeleteDialog = (event: any, data: Trapdestinations) => {
     this.dataInputDelete = data;
+    this.isShowDialogDelete = true;
   }
 
   setIsShowConrfirm(event: boolean){
@@ -53,8 +135,16 @@ export class TrapDestinationsComponent implements OnInit {
       this.getAll();
     }
   }
+  addTrapDestination = () => {
+    this.router.navigate(['/add']);
+  }
+
+  onLinkClick = (dataInputDelete: any) => {
+    this.router.navigate(['/edit/',dataInputDelete.id]);
+  }
 
   clearAll(){
     this.messageService.clear();
   }
+
 }

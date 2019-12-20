@@ -1,16 +1,18 @@
-<div class="add-trap">
+<h1 style="font-size: larger; margin-left: 10px;">Trap Destinations</h1>
+<!-- <div class="add-trap">
 	<h1 style="font-size: larger;">Trap Destinations</h1>
 	<p-button label="Add Trap Destinations" icon="pi pi-plus" iconPos="right" styleClass="ui-button-danger"
 		class="button-add" routerLink="/add"></p-button>
 
-	<p-table [columns]="cols" [value]="trapDes" [paginator]="true" [rows]="5" [totalRecords]="15"
+	<p-table [columns]="colus" [value]="trapDes" [paginator]="true" [rows]="5" [totalRecords]="15"
 		[rowsPerPageOptions]="[5,10,15]">
 		<ng-template pTemplate="header" let-columns>
 			<tr>
 				<th *ngFor="let col of columns" [pSortableColumn]="col.field">
 					{{col.header}}
 					<p-sortIcon [field]="col.field" ariaLabel="Activate to sort"
-						ariaLabelDesc="Activate to sort in descending order" ariaLabelAsc="Activate to sort in ascending order">
+						ariaLabelDesc="Activate to sort in descending order"
+						ariaLabelAsc="Activate to sort in ascending order">
 					</p-sortIcon>
 				</th>
 				<th>Delete</th>
@@ -53,11 +55,20 @@
 					state.totalRecords) : 0}} of {{state.totalRecords ? state.totalRecords : 0}} record
 		</ng-template>
 	</p-table>
+</div> -->
+
+
+
+<div class="common">
+	<rbn-common-table [data]="trapDes" [cols]="cols" [numberRowPerPage]="5" [selectedRows]="dataInputDelete"
+		[onDeleteButtonClick]="showDeleteDialog" [onLinkClick]="onLinkClick" [topButton]="{
+			label: 'ADD TRAPDESTINATIONS',
+			icon: 'pi pi-plus',
+			iconPos: 'right',
+			onClick: addTrapDestination
+		  }">
+	</rbn-common-table>
 </div>
 
 <app-dialog-delete *ngIf="isShowDialogDelete" (myEmit)="setIsShowConrfirm($event)" [dataInputDelete]="dataInputDelete">
 </app-dialog-delete>
-
-<div class="common">
-	<rbn-common-table [data]="trapDes" [cols]="cols"></rbn-common-table>
-</div>

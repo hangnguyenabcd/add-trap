@@ -14,5 +14,12 @@
     padding-left: 43px;
 }
 .common{
-    margin-top: 50px;
+    margin-left: 10px;
 }
+
+:host ::ng-deep rbn-common-table .status-icon .fa-check-circle-o{
+    color: green;
+    }
+:host ::ng-deep rbn-common-table  .status-icon .fa-times-circle-o {
+    color: red;
+    }

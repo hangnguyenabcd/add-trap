@@ -1,5 +1,5 @@
 
-<p-dialog id="dlgelement" header="Delete" [(visible)]="display">
+<!-- <p-dialog id="dlgelement" header="Delete" [(visible)]="display">
     <p>Are you sure you want to delete the trap destination {{dataInputDelete.destinationName}} ?</p>
       <p>This action cannot be undone</p>
         <footer>
@@ -8,4 +8,16 @@
               <p-button (click)="onClick()" label="Yes"></p-button>
             </div>
         </footer>
+</p-dialog> -->
+
+<p-dialog id="dlgelement" header="Delete" [width]="700" [(visible)]="display">
+  <span> Are you sure you want to delete the trap destination {{dataInputDelete.destinationName}} ?</span>
+  <div><i>This action cannot be undone</i></div>
+  <p-footer>
+    <div class="ui-dialog-buttonpane ui-widget-content ui-helper-clearfix">
+      <button type="button" pButton icon="fa fa-times" (click)="cancelFromDb()" label="No"
+        class="ui-button-secondary"></button>
+      <button type="button" pButton icon="pi pi-pw pi-check" (click)="onClick()" label="Yes"></button>
+    </div>
+  </p-footer>
 </p-dialog>

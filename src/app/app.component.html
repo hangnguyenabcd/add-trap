@@ -1,4 +1,4 @@
-<router-outlet></router-outlet>
+<!-- <router-outlet></router-outlet> -->
 <div class="header">
 	<img #img src="../../assets/vnf.png" alt="Logo" class="header-image">
 	<div class="icon-group">
@@ -7,17 +7,17 @@
 		<p-menubar [model]="items" class="menu-mega"></p-menubar>
 	</div>
 </div>
-<p-toast>
+<rbn-message>
 	<ng-template let-message pTemplate="message">
-		<div style="padding-right: 215px">
+		<div>
 			<i class="pi pi-info" style="font-size: 2.5em"></i>
-			<p class="message">{{message.summary}}</p>
+			<p>{{message.summary}}</p>
 		</div>
 		<p class="message-detail">{{message.detail}}</p>
 		<button type="button" pButton (click)="clearAll()" label="Clear all"
 			class="ui-button-secondary button-toast"></button>
 	</ng-template>
-</p-toast>
+</rbn-message>
 
 <div class="container">
 	<div class="menu-bar">

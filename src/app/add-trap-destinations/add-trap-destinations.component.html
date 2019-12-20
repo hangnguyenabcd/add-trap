@@ -11,7 +11,7 @@
 						Enable
 					</div>
 					<div class="ui-g-8">
-						<p-inputSwitch name="status" formControlName="status"></p-inputSwitch>
+						<p-inputSwitch name="status" formControlName="status" onLabel="On" offLabel="Off"></p-inputSwitch>
 					</div>
 				</div>
 
@@ -21,9 +21,9 @@
 					</div>
 					<div class="ui-g-8">
 						<input type="text" required name="destinationName" formControlName="destinationName" class="input-form">
-						<p-message severity="error" text="Destination Name is required"
+						<small severity="error" text="Destination Name is required"
 							*ngIf="userform.controls['destinationName'].errors?.required && userform.controls['destinationName'].dirty">
-						</p-message>
+						</small>
 					</div>
 				</div>
 
@@ -33,12 +33,12 @@
 					</div>
 					<div class="ui-g-8">
 						<input id="address" required type="text" name="ipAddress" formControlName="ipAddress" class="input-form">
-						<p-message severity="error" text="IP Address (v4/v6) is required"
+						<small severity="error" text="IP Address (v4/v6) is required"
 							*ngIf="userform.controls['ipAddress'].errors?.required && userform.controls['ipAddress'].touched">
-						</p-message>
-						<p-message severity="error" text="not IP Address (v4/v6 format)"
+						</small>
+						<small severity="error" text="not IP Address (v4/v6 format)"
 							*ngIf="userform.controls['ipAddress'].errors?.pattern && userform.controls['ipAddress'].touched">
-						</p-message>
+						</small>
 					</div>
 				</div>
 
@@ -49,12 +49,12 @@
 					<div class="ui-g-8">
 						<input id="portNumber" required type="text" name="portNumber" formControlName="portNumber"
 							class="input-form">
-						<p-message severity="error" text="Port Number is required"
+						<small severity="error" text="Port Number is required"
 							*ngIf="userform.controls['portNumber'].errors?.required && userform.controls['portNumber'].touched">
-						</p-message>
-						<p-message severity="error" text="not Port Number is required"
+						</small>
+						<small severity="error" text="not Port Number is required"
 							*ngIf="userform.controls['portNumber'].errors?.pattern && userform.controls['portNumber'].touched">
-						</p-message>
+						</small>
 					</div>
 				</div>
 
@@ -64,9 +64,9 @@
 					</div>
 					<div class="ui-g-8">
 						<input id="address" required type="text" name="community" formControlName="community" class="input-form">
-						<p-message severity="error" text="SNMP Trap Community is required"
+						<small severity="error" text="SNMP Trap Community is required"
 							*ngIf="userform.controls['community'].errors?.required && userform.controls['community'].dirty">
-						</p-message>
+						</small>
 					</div>
 				</div>
 
@@ -77,9 +77,9 @@
 					<div class="ui-g-8">
 						<p-dropdown [options]="trapversion" formControlName="version" (ngModelChange)="handleV3()">
 						</p-dropdown>
-						<p-message severity="error" text="SNMP Trap Version is required"
+						<small severity="error" text="SNMP Trap Version is required"
 							*ngIf="userform.controls['version'].errors?.required && userform.controls['version'].dirty">
-						</p-message>
+						</small>
 					</div>
 				</div>
 				<div *ngIf="V3">
