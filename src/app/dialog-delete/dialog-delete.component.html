@@ -11,12 +11,11 @@
 </p-dialog> -->
 
 <p-dialog id="dlgelement" header="Delete" [width]="700" [(visible)]="display">
-  <span> Are you sure you want to delete the trap destination {{dataInputDelete.destinationName}} ?</span>
-  <div><i>This action cannot be undone</i></div>
+  <span> {{ 'ADMIN.TRAP_DESTINATIONS.DESTORY_TRAP_DESTINATION' | translate }} <i>{{trapDestination?.name}}</i> ?</span>
+  <div><i>{{ 'COMMON.ACTION_CANNOT_BE_UNDONE' | translate }}</i></div>
   <p-footer>
     <div class="ui-dialog-buttonpane ui-widget-content ui-helper-clearfix">
-      <button type="button" pButton icon="fa fa-times" (click)="cancelFromDb()" label="No"
-        class="ui-button-secondary"></button>
+      <button type="button" pButton icon="fa fa-times" (click)="cancelFromDb()" label="No"></button>
       <button type="button" pButton icon="pi pi-pw pi-check" (click)="onClick()" label="Yes"></button>
     </div>
   </p-footer>

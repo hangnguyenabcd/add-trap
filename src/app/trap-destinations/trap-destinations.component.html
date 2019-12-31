@@ -1,4 +1,4 @@
-<h1 style="font-size: larger; margin-left: 10px;">Trap Destinations</h1>
+<!-- <h1 style="font-size: larger; margin-left: 10px;">Trap Destinations</h1> -->
 <!-- <div class="add-trap">
 	<h1 style="font-size: larger;">Trap Destinations</h1>
 	<p-button label="Add Trap Destinations" icon="pi pi-plus" iconPos="right" styleClass="ui-button-danger"
@@ -60,9 +60,9 @@
 
 
 <div class="common">
-	<rbn-common-table [data]="trapDes" [cols]="cols" [numberRowPerPage]="5" [selectedRows]="dataInputDelete"
-		[onDeleteButtonClick]="showDeleteDialog" [onLinkClick]="onLinkClick" [topButton]="{
-			label: 'ADD TRAPDESTINATIONS',
+	<rbn-common-table #rbnTable header="{{'ADMIN.TRAP_DESTINATIONS.TITLE' | translate }}" [data]="trapDes" [cols]="cols" [numberRowPerPage]="5" [selectedRows]="dataInputDelete"
+		[onDeleteButtonClick]="showDeleteDialog" [onLinkClick]="onLinkClick" [refreshData]="refreshData" [topButton]="{
+			label: 'ADMIN.TRAP_DESTINATIONS.ADD' | translate ,
 			icon: 'pi pi-plus',
 			iconPos: 'right',
 			onClick: addTrapDestination

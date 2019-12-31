@@ -21,7 +21,12 @@
             "aot": false,
             "assets": [
               "src/favicon.ico",
-              "src/assets"
+              "src/assets",
+              {
+                "glob": "rbn_en.json",
+                "input": "./node_modules/rbn-common-lib/assets/i18n/",
+                "output": "./assets/i18n/"
+              }
             ],
             "styles": [
               "src/styles.css",

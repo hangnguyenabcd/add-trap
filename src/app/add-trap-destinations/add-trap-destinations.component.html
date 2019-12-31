@@ -8,7 +8,7 @@
 			<div class="ui-g">
 				<div class="ui-g-12">
 					<div class="ui-g-4">
-						Enable
+						{{ 'ADMIN.TRAP_DESTINATIONS.ENABLED' | translate }}
 					</div>
 					<div class="ui-g-8">
 						<p-inputSwitch name="status" formControlName="status" onLabel="On" offLabel="Off"></p-inputSwitch>
@@ -17,76 +17,76 @@
 
 				<div class="ui-g-12">
 					<div class="ui-g-4">
-						Destination Name <span class="char">*</span>
+						{{ 'ADMIN.TRAP_DESTINATIONS.NAME' | translate }} <span class="char">*</span>
 					</div>
 					<div class="ui-g-8">
-						<input type="text" required name="destinationName" formControlName="destinationName" class="input-form">
-						<small severity="error" text="Destination Name is required"
-							*ngIf="userform.controls['destinationName'].errors?.required && userform.controls['destinationName'].dirty">
-						</small>
+						<input type="text" required id="destinationName" formControlName="destinationName" class="input-form">
+						<p-message severity="error" text="Destination Name is required"
+							*ngIf="userform.controls['destinationName'].errors?.required && userform.controls['destinationName'].touched">
+						</p-message>
 					</div>
 				</div>
 
 				<div class="ui-g-12">
 					<div class="ui-g-4">
-						IP Address (v4/v6) <span class="char">*</span>
+						{{ 'ADMIN.TRAP_DESTINATIONS.IP_ADRESS_V4_V6' | translate }} <span class="char">*</span>
 					</div>
 					<div class="ui-g-8">
 						<input id="address" required type="text" name="ipAddress" formControlName="ipAddress" class="input-form">
-						<small severity="error" text="IP Address (v4/v6) is required"
+						<p-message severity="error" text="IP Address (v4/v6) is required"
 							*ngIf="userform.controls['ipAddress'].errors?.required && userform.controls['ipAddress'].touched">
-						</small>
-						<small severity="error" text="not IP Address (v4/v6 format)"
+						</p-message>
+						<p-message severity="error" text="not IP Address (v4/v6 format)"
 							*ngIf="userform.controls['ipAddress'].errors?.pattern && userform.controls['ipAddress'].touched">
-						</small>
+						</p-message>
 					</div>
 				</div>
 
 				<div class="ui-g-12">
 					<div class="ui-g-4">
-						Port Number <span class="char">*</span>
+						{{ 'ADMIN.TRAP_DESTINATIONS.PORT_NUMBER' | translate }} <span class="char">*</span>
 					</div>
 					<div class="ui-g-8">
 						<input id="portNumber" required type="text" name="portNumber" formControlName="portNumber"
 							class="input-form">
-						<small severity="error" text="Port Number is required"
+						<p-message severity="error" text="Port Number is required"
 							*ngIf="userform.controls['portNumber'].errors?.required && userform.controls['portNumber'].touched">
-						</small>
-						<small severity="error" text="not Port Number is required"
+						</p-message>
+						<p-message severity="error" text="not Port Number is required"
 							*ngIf="userform.controls['portNumber'].errors?.pattern && userform.controls['portNumber'].touched">
-						</small>
+						</p-message>
 					</div>
 				</div>
 
 				<div class="ui-g-12">
 					<div class="ui-g-4">
-						SNMP Trap Community <span class="char">*</span>
+						{{ 'ADMIN.TRAP_DESTINATIONS.SNMP_TRAP_COMMUNITY' | translate }} <span class="char">*</span>
 					</div>
 					<div class="ui-g-8">
-						<input id="address" required type="text" name="community" formControlName="community" class="input-form">
-						<small severity="error" text="SNMP Trap Community is required"
-							*ngIf="userform.controls['community'].errors?.required && userform.controls['community'].dirty">
-						</small>
+						<input id="community" required type="text" formControlName="community" class="input-form">
+						<p-message severity="error" text="SNMP Trap Community is required"
+							*ngIf="userform.controls['community'].errors?.required && userform.controls['community'].touched">
+						</p-message>
 					</div>
 				</div>
 
 				<div class="ui-g-12">
 					<div class="ui-g-4">
-						SNMP Trap Version <span class="char">*</span>
+						{{ 'ADMIN.TRAP_DESTINATIONS.SNMP_TRAP_VERSION' | translate }} <span class="char">*</span>
 					</div>
 					<div class="ui-g-8">
 						<p-dropdown [options]="trapversion" formControlName="version" (ngModelChange)="handleV3()">
 						</p-dropdown>
-						<small severity="error" text="SNMP Trap Version is required"
-							*ngIf="userform.controls['version'].errors?.required && userform.controls['version'].dirty">
-						</small>
+						<p-message severity="error" text="SNMP Trap Version is required"
+							*ngIf="userform.controls['version'].errors?.required && userform.controls['version'].touched">
+						</p-message>
 					</div>
 				</div>
 				<div *ngIf="V3">
 					<div class="ui-g">
 						<div class="ui-g-12">
 							<div class="ui-g-4">
-								SNMP V3Local Engine ID <span class="char">*</span>
+								{{ 'ADMIN.TRAP_DESTINATIONS.SNMP_V3LOCAL_ENGINE_ID' | translate }} <span class="char">*</span>
 							</div>
 							<div class="ui-g-8">
 								<input id="engine" required type="text" name="engine" formControlName="engine" class="input-form">
@@ -95,7 +95,7 @@
 
 						<div class="ui-g-12">
 							<div class="ui-g-4">
-								SNMP V3 User <span class="char">*</span>
+								{{ 'ADMIN.TRAP_DESTINATIONS.SNMP_V3_USER' | translate }} <span class="char">*</span>
 							</div>
 							<div class="ui-g-8">
 								<input id="v3user" required type="text" name="v3user" formControlName="v3user" class="input-form">
@@ -104,14 +104,14 @@
 
 						<div class="ui-g-12">
 							<div class="ui-g-7">
-								<span class="securaty">Security</span>
+								<span class="securaty">{{'ADMIN.TRAP_DESTINATIONS.SECURITY' | translate }}</span>
 								<hr class="security-hr" />
 							</div>
 						</div>
 
 						<div class="ui-g-12">
 							<div class="ui-g-4">
-								Authentication Disabled
+								{{ 'ADMIN.TRAP_DESTINATIONS.AUTHENTICATION_ENABLED' | translate }}
 							</div>
 							<div class="ui-g-8">
 								<p-inputSwitch name="authentication" formControlName="authentication"
@@ -122,7 +122,7 @@
 							<div class="ui-g">
 								<div class="ui-g-12">
 									<div class="ui-g-4">
-										SNMP v3 Authentication Passphrase<span class="char">*</span>
+										{{ 'ADMIN.TRAP_DESTINATIONS.SNMP_V3_AUTHENTICATION_PASSPHRASE' | translate }}<span class="char">*</span>
 									</div>
 									<div class="ui-g-8">
 										<input id="address" required type="text" name="authenticationPassphrase"
@@ -133,7 +133,7 @@
 							<div class="ui-g">
 								<div class="ui-g-12">
 									<div class="ui-g-4">
-										SNMP V3 Authentication Protocol <span class="char">*</span>
+										{{ 'ADMIN.TRAP_DESTINATIONS.SNMP_V3_AUTHENTICATION_PROTOCOL' | translate }} <span class="char">*</span>
 									</div>
 									<div class="ui-g-8">
 										<p-dropdown [options]="authenticationProtocol" formControlName="authenticationProtocol">
@@ -145,7 +145,7 @@
 
 						<div class="ui-g-12">
 							<div class="ui-g-4">
-								Privacy Disabled
+								{{ 'ADMIN.TRAP_DESTINATIONS.PRIVACY_DISABLED' | translate }}
 							</div>
 							<div class="ui-g-8">
 								<p-inputSwitch name="privacy" formControlName="privacy" (ngModelChange)="handlePrivacy()">
@@ -156,7 +156,7 @@
 							<div class="ui-g">
 								<div class="ui-g-12">
 									<div class="ui-g-4">
-										SNMP V3 Privacy Passphrase <span class="char">*</span>
+										{{ 'ADMIN.TRAP_DESTINATIONS.SNMP_V3_PRIVACY_PASSPHRASE' | translate }} <span class="char">*</span>
 									</div>
 									<div class="ui-g-8">
 										<input id="privacyPassphrase" required type="text" name="privacyPassphrase"
@@ -165,7 +165,7 @@
 								</div>
 								<div class="ui-g-12">
 									<div class="ui-g-4">
-										SNMP Trap V3 Privacy Protocol <span class="char">*</span>
+										{{ 'ADMIN.TRAP_DESTINATIONS.SNMP_V3_PRIVACY_PROTOCOL' | translate }} <span class="char">*</span>
 									</div>
 									<div class="ui-g-8">
 										<p-dropdown [options]="privacyProtocol" formControlName="privacyProtocol">
@@ -184,8 +184,7 @@
 			<div class="button-group">
 				<p-button label="Cancel" (click)="onCancel()" icon="pi pi-times" iconPos="left" styleClass="ui-button-secondary"
 					class="button-cancel"></p-button>
-				<p-button label="Save" icon="pi pi-check" iconPos="left" styleClass="ui-button-danger"
-					[disabled]="!userform.valid"></p-button>
+				<p-button label="Save" icon="pi pi-check" iconPos="left" styleClass="ui-button-danger"></p-button>
 			</div>
 		</div>
 	</form>

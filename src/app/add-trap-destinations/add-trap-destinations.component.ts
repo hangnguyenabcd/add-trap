@@ -6,6 +6,7 @@ import { MessageService } from 'primeng/api';
 import { Router } from '@angular/router';
 import { ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
+import { TranslateService } from '@ngx-translate/core';
 
 import { TrapdestinationsService } from '../service/trapdestinations.service';
 import { SHOWTITLEADD, SHOWTITLEEDIT } from '../config/constanst'
@@ -32,6 +33,7 @@ export class AddTrapDestinationsComponent implements OnInit {
 	submitted: boolean;
 	titleForm = SHOWTITLEADD[1].label;
 	private isAddForm: boolean = true;
+	transalteTrapDestination: any;
 
 	private editItem: Trapdestinations;
 	constructor(
@@ -40,7 +42,8 @@ export class AddTrapDestinationsComponent implements OnInit {
 		private router: Router,
 		private route: ActivatedRoute,
 		private location: Location,
-		private service: TrapdestinationsService) {
+		private service: TrapdestinationsService,
+		private translate: TranslateService) {
 	}
 
 	ngOnInit() {
@@ -50,7 +53,8 @@ export class AddTrapDestinationsComponent implements OnInit {
 			this.add = SHOWTITLEEDIT;
 			this.titleForm = SHOWTITLEEDIT[1].label;
 			this.isAddForm = false;
-			this.service.getData(editId).subscribe((data: Trapdestinations) => {
+			this.service.getData(editId).subscribe((data) => {
+				data = data.body;
 				this.editItem = data;
 				this.setControlsValue([
 					{ name: 'status', value: data.status },
@@ -140,8 +144,11 @@ export class AddTrapDestinationsComponent implements OnInit {
 					this.router.navigate(['/home']);
 				})
 			}
-
-		}
+		}else {
+			Object.keys(this.userform.controls).forEach(key => {
+			  this.userform.controls[key].markAsTouched();
+			})
+		  }
 	}
 
 	onCancel() {

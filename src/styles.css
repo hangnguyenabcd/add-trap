@@ -24,21 +24,11 @@ body{
 .ui-widget-content p {
     margin: 0px !important;
 }
-body .ui-dialog {
-    width: 600px !important;
-}
-.ui-widget {
-    text-align: center;
-}
 body .ui-widget-content p {
     text-align: left;
 }
 body .ui-panelmenu .ui-panelmenu-header > a {
     text-align: left;
-}
-body .ui-table .ui-table-thead > tr > th {
-    color: #666666 !important;
-    background-color: #ebedf0 !important;
 }
 body .ui-breadcrumb {
     text-align: left;

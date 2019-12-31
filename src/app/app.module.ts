@@ -22,12 +22,24 @@ import { DialogModule } from 'primeng/dialog';
 import { ToastModule } from 'primeng/toast';
 import { MessageService } from 'primeng/api';
 import { RbnCommonLibModule } from 'rbn-common-lib';
+import { MultiTranslateHttpLoader } from 'ngx-translate-multi-http-loader';
+import { HttpClient } from '@angular/common/http';
+import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 
 import { AppComponent } from './app.component';
 import { MenubarComponent } from './menubar/menubar.component';
 import { TrapDestinationsComponent } from './trap-destinations/trap-destinations.component';
 import { AddTrapDestinationsComponent } from './add-trap-destinations/add-trap-destinations.component';
 import { DialogDeleteComponent } from './dialog-delete/dialog-delete.component';
+
+
+
+export function HttpLoaderFactory(http: HttpClient) {
+  return new MultiTranslateHttpLoader(http, [
+    { prefix: '../assets/i18n/', suffix: '.json' },
+    { prefix: '../assets/i18n/rbn_', suffix: '.json' },
+  ]);
+}
 
 
 @NgModule({
@@ -61,7 +73,14 @@ import { DialogDeleteComponent } from './dialog-delete/dialog-delete.component';
     ReactiveFormsModule,
     MessageModule,
     DialogModule,
-    ToastModule
+    ToastModule,
+    TranslateModule.forRoot({
+      loader: {
+        provide: TranslateLoader,
+        useFactory: HttpLoaderFactory,
+        deps: [HttpClient]
+      }
+    }),
   ],
   providers: [MessageService],
   bootstrap: [AppComponent]

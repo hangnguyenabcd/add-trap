@@ -6,7 +6,7 @@ import { MenuItem } from 'primeng/api';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit {
-  title = 'Ribbon VNF Manager';
+  // title = 'Ribbon VNF Manager';
   items: MenuItem[];
   data = [];
   constructor() { }

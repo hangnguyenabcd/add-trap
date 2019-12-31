@@ -4,3 +4,10 @@
 .button-no{
     margin-right: 10px;
 }
+:host ::ng-deep .ui-dialog {
+    width: 600px !important;
+}
+
+:host ::ng-deep .ui-widget {
+    text-align: center;
+}

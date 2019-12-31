@@ -1,6 +1,6 @@
-import { Component, OnInit, Input, Output, EventEmitter, OnChanges, AfterViewInit, OnDestroy } from '@angular/core';
-import { Router } from '@angular/router'
-import { MessageService } from 'primeng/api'
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { MessageService } from 'primeng/api';
+// import { TranslateService } from '@ngx-translate/core';
 
 import { TrapdestinationsService } from '../service/trapdestinations.service';
 import { Trapdestinations } from '../trap-destinations';
@@ -11,39 +11,35 @@ import { Trapdestinations } from '../trap-destinations';
   styleUrls: ['./dialog-delete.component.css'],
   providers: [MessageService]
 })
-export class DialogDeleteComponent implements OnInit, OnChanges, AfterViewInit, OnDestroy {
+export class DialogDeleteComponent implements OnInit {
   display: boolean = false;
-  trapDes: Trapdestinations[] = [];
+  // trapDes: Trapdestinations[] = [];
   @Input() dataInputDelete;
   @Output() myEmit = new EventEmitter<boolean>();
   constructor(
     private trapDestinationsService: TrapdestinationsService,
     private messageService: MessageService,
-    private router: Router) { }
+   ) { }
 
   ngOnInit() {
-    console.log('ngOnChanges()');
     this.showDialog();
   }
-  ngOnChanges() {
-    console.log('ngOnChanges()');
-  }
-  ngAfterViewInit() {
-    console.log('ngAfterViewInit');
-  }
-  ngOnDestroy() {
-    console.log('ngOnDestroy');
-  }
+
   showDialog() {
     this.display = true;
   }
+
   cancelFromDb() {
     this.display = false;
     this.myEmit.emit(false);
   }
+
   onClick() {
     this.trapDestinationsService.delete(this.dataInputDelete.id).subscribe(res => {
       this.myEmit.emit(true);
+    },
+    () => {
+      this.myEmit.emit(false);
     });
   }
 }
